@@ -74,6 +74,18 @@ body {
   transform: scale(1.1);
 }
 
+/* Invisible Button Style */
+#invisible-button {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  cursor: pointer;
+  z-index: 2; /* On top of everything */
+}
+
 /* Darker Theme - Countdown Text Colors */
 @keyframes glitch {
   0% {
