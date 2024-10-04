@@ -16,6 +16,7 @@ window.addEventListener('load', function() {
 
 // Countdown timer logic
 var countdownDate = new Date("Oct 11, 2024 00:00:00").getTime();
+
 var countdownFunction = setInterval(function() {
     var now = new Date().getTime();
     var distance = countdownDate - now;
