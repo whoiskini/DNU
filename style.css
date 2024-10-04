@@ -1,0 +1,155 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Video Background */
+#bg-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1; /* Ensure the video stays behind the content */
+  object-fit: cover; /* Ensures the video covers the entire screen */
+}
+
+/* Container and Other Elements */
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  z-index: 1; /* Keeps the text above the background video */
+}
+
+/* Mystery Text and Countdown */
+.mystery-text {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  letter-spacing: 4px;
+  color: #ff3333;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 3s ease-in-out;
+}
+
+.hint {
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: #bbb;
+  letter-spacing: 1px;
+  animation: fadeIn 5s ease-in-out;
+}
+
+/* Countdown Styling */
+#countdown {
+  display: flex;
+  justify-content: center;
+  font-size: 2em;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+#countdown div {
+  margin: 0 10px;
+}
+
+#countdown span {
+  font-weight: bold;
+  font-size: 4em;
+  color: #ff3333;
+  position: relative;
+  animation: glitch 1.5s infinite;
+}
+
+/* Button and Input Field */
+.email-signup {
+  background: none;
+  border: 1px solid #555;
+  color: #fff;
+  padding: 10px;
+  margin-top: 10px;
+  outline: none;
+}
+
+button {
+  background: linear-gradient(90deg, #ff3333, #ff5050);
+  color: #fff;
+  padding: 12px 25px;
+  border: 2px solid #ff3333;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #ff3333;
+  transform: scale(1.1);
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+  .mystery-text {
+    font-size: 1.8em;
+    letter-spacing: 2px;
+  }
+
+  #countdown span {
+    font-size: 2.5em;
+  }
+
+  #countdown {
+    font-size: 1.2em;
+  }
+
+  .hint {
+    font-size: 1em;
+  }
+
+  button {
+    padding: 8px 16px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .mystery-text {
+    font-size: 1.5em;
+    letter-spacing: 1px;
+  }
+
+  #countdown span {
+    font-size: 2em;
+  }
+
+  #countdown {
+    font-size: 1em;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #countdown div {
+    margin: 5px 0;
+  }
+
+  .hint {
+    font-size: 0.8em;
+  }
+
+  button {
+    padding: 6px 12px;
+    font-size: 0.9em;
+  }
+}
+
