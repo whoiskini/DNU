@@ -1,26 +1,21 @@
-// Attempt to play the music once the page is loaded
+// Attempt to play the music when the user interacts with the page
 window.addEventListener('load', function() {
     var audio = document.getElementById('bg-music');
+    var invisibleButton = document.getElementById('invisible-button');
     
-    // Try to play the audio immediately
-    var playPromise = audio.play();
-
-    // If the autoplay fails, listen for user interaction to start playback
-    if (playPromise !== undefined) {
-        playPromise.then(function() {
-            // Autoplay started successfully
-        }).catch(function() {
-            // Autoplay was prevented, so wait for user interaction
-            window.addEventListener('click', function() {
-                audio.play();
-            });
-        });
+    // Function to play audio
+    function playAudio() {
+        audio.play();
+        invisibleButton.style.display = 'none'; // Hide the invisible button after interaction
     }
+
+    // Listen for click or touch event on the invisible button
+    invisibleButton.addEventListener('click', playAudio);
+    invisibleButton.addEventListener('touchstart', playAudio);
 });
 
 // Countdown timer logic
 var countdownDate = new Date("Oct 11, 2024 00:00:00").getTime();
-
 var countdownFunction = setInterval(function() {
     var now = new Date().getTime();
     var distance = countdownDate - now;
