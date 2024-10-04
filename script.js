@@ -1,30 +1,42 @@
-// Set the date of the event
-const releaseDate = new Date("October 11, 2024 00:00:00").getTime();
+// Attempt to play the music once the page is loaded
+window.addEventListener('load', function() {
+    var audio = document.getElementById('bg-music');
+    
+    // Try to play the audio immediately
+    var playPromise = audio.play();
 
-function updateCountdown() {
-  const now = new Date().getTime();
-  const timeLeft = releaseDate - now;
+    // If the autoplay fails, listen for user interaction to start playback
+    if (playPromise !== undefined) {
+        playPromise.then(function() {
+            // Autoplay started successfully
+        }).catch(function() {
+            // Autoplay was prevented, so wait for user interaction
+            window.addEventListener('click', function() {
+                audio.play();
+            });
+        });
+    }
+});
 
-  // Time calculations
-  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+// Countdown timer logic
+var countdownDate = new Date("Oct 11, 2024 00:00:00").getTime();
 
-  // Display the result in the corresponding elements
-  document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
-  document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
-  document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
-  document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+var countdownFunction = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countdownDate - now;
 
-  // If the countdown is over
-  if (timeLeft < 0) {
-    clearInterval(x);
-    document.getElementById("countdown").innerHTML = "The Mystery is Revealed!";
-  }
-}
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-// Update countdown every second
-const x = setInterval(updateCountdown, 1000);
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
 
-
+    if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown").innerHTML = "The Mystery is Revealed!";
+    }
+}, 1000);
